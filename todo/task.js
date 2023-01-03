@@ -1,37 +1,40 @@
 let buttonAdd = document.querySelector(".tasks__add");
-let listOfDeal = document.querySelector(".tasks__list");
+let listOfTask = document.querySelector(".tasks__list");
 let inPut = document.querySelector(".tasks__input");
-let deal;
+let task;
 
 buttonAdd.addEventListener("click", createDeal);
 
 function createDeal() {
   
 
-  deal = document.createElement("div");
-  deal.className = "task";
+  task = document.createElement("div");
+  task.className = "task";
 
-  let dealTitle = document.createElement("div");
-  dealTitle.innerText = inPut.value;
+  let taskTitle = document.createElement("div");
+  taskTitle.className = "task__title";
+  taskTitle.innerText = inPut.value;
+  
 
-  let removeDeal = document.createElement("a");
-  removeDeal.className = "task__remove";
-  removeDeal.innerHTML = "&times;";
-  removeDeal.href = "#";
+  let removeTask = document.createElement("a");
+  removeTask.className = "task__remove";
+  removeTask.innerHTML = "&times;";
+  removeTask.href = "#";
 
-  if (dealTitle.innerText) {
-    listOfDeal.append(deal);
-    deal.append(dealTitle);
-    deal.append(removeDeal);
+  if (taskTitle.innerText.trim()) {
+    listOfTask.append(task);
+    task.append(taskTitle);
+    task.append(removeTask);
   }
 
-  removeDeal.addEventListener("click", deleteDeal);
+  inPut.value = "";
+  removeTask.addEventListener("click", deleteTask);
  
-  event.preventDefault();
+  event.preventDefault(event);
   
 }
 
-function deleteDeal() {
+function deleteTask() {
   this.closest('div').remove()
 
 }

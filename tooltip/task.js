@@ -12,14 +12,8 @@ for (let i = 0; i < hasToolTip.length; i++) {
       hasToolTip[i].appendChild(toolTip);
 
       let positionOfHasToolTip = hasToolTip[i].getBoundingClientRect();
-      let d = `${positionOfHasToolTip.left}px`;
-      console.log(d);
-      toolTip.style =
-        "position:absolute; left: d "; //???почему не работает шаблонная строка, сдвиг влево должен быть как у ссылки?
-
-      //toolTip.setAttribute("style", `left:${positionOfHasToolTip.left}`);
-      console.log(`${positionOfHasToolTip.left}px` + " left позиция ссылки");
-      console.log(`${positionOfHasToolTip.top}` + " top позиция ссылки");
+     
+      toolTip.style = `position:absolute; left:${positionOfHasToolTip.left}px`; 
 
       return false;
     } else {
