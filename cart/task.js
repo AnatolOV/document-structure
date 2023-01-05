@@ -27,26 +27,29 @@ for (let i = 0; i < products.length; i++) {
     let cartProduct;
     let cartProductImg;
     let quantityInCart;
+    const findEl = productsInCart.find((el) => el.dataset.id == thisId);
+    
+    if (thisproductsQuantityValue.innerText > 0){
+      if (findEl) {
+        findEl.querySelector(".cart__product-count").innerText =
+          +findEl.querySelector(".cart__product-count").innerText +
+          +thisproductsQuantityValue.innerText;
+      } else {
+        cartProduct = document.createElement("div");
+        cartProduct.className = "cart__product";
+        cartProduct.setAttribute("data-id", thisId);
 
-    if (productsInCart.find((el) => el.dataset.id == `${thisId}`)) {
-      productsInCart[i].querySelector(".cart__product-count").innerText =
-        +productsInCart[i].querySelector(".cart__product-count").innerText +
-        +thisproductsQuantityValue.innerText;
-    } else if (!productsInCart.find((el) => el.dataset.id == `${thisId}`)) {
-      cartProduct = document.createElement("div");
-      cartProduct.className = "cart__product";
-      cartProduct.setAttribute("data-id", `${thisId}`);
+        cartProductImg = document.createElement("img");
+        cartProductImg.className = "cart__product-image";
+        cartProductImg.setAttribute("src", thisImg);
+        cartProduct.append(cartProductImg);
 
-      cartProductImg = document.createElement("img");
-      cartProductImg.className = "cart__product-image";
-      cartProductImg.setAttribute("src", `${thisImg}`);
-      cartProduct.append(cartProductImg);
-
-      quantityInCart = document.createElement("div");
-      quantityInCart.className = "cart__product-count";
-      quantityInCart.innerText = thisproductsQuantityValue.innerText;
-      cartProduct.append(quantityInCart);
-      cart.append(cartProduct);
+        quantityInCart = document.createElement("div");
+        quantityInCart.className = "cart__product-count";
+        quantityInCart.innerText = thisproductsQuantityValue.innerText;
+        cartProduct.append(quantityInCart);
+        cart.append(cartProduct);
+      }
     }
   });
 }
